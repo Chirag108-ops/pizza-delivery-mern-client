@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import imgSource from '../img/hero-pizza.png'
 import Menu from '../components/Menu';
+import Loader from '../components/Loader'
 const Home = () => {
+    
     const [pizzas, setPizzas] = useState([])
+    const [loader, setLoader] = useState(true)
     const fetchPizzas = async () => {
         try {
+            setLoader(true)
             const response = await fetch('https://pizza-mania-23rd.onrender.com/api/v1/auth');
             const data = await response.json();
             setPizzas(data.pizzas)
-
+            setLoader(false)
         } catch (error) {
             console.error('Error fetching pizzas:', error);
         }
@@ -31,14 +35,21 @@ const Home = () => {
                 </div>
             </div>
             <section className="menu container mx-auto py-8">
-                <h1 className="text-xl font-bold mb-8">All Pizzas</h1>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-16">
-                    {
-                        pizzas.map((pizza) => {
-                            return <Menu key={pizza._id} pizza={pizza} />
-                        })
-                    }
-                </div>
+                <h1 className="text-5xl font-bold mb-16 text-center text-orange-500">MENU</h1>
+
+                {
+                    loader ? (
+                        <>
+                            <Loader />
+                            <p className="text-2xl font-bold text-center py-4 mt-7 text-orange-500">Slice by slice, we're preparing your perfect pizza menu!</p>
+                        </>
+                    ) :
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-16">
+                            {pizzas.map((pizza) => {
+                                return <Menu key={pizza._id} pizza={pizza} />
+                            })}
+                        </div>
+                }
             </section>
         </div>
     )
