@@ -81,7 +81,7 @@ const Navbar = () => {
                                     {totalQty}
                                 </span>
                             }
-                            <img src={cartImage} alt="" />
+                            <img src={cartImage} alt=""/>
                         </NavLink>
                     </li>
                 </ul>

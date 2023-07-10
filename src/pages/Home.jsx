@@ -3,10 +3,10 @@ import imgSource from '../img/hero-pizza.png'
 import Menu from '../components/Menu';
 import Loader from '../components/Loader'
 const Home = () => {
-    
     const [pizzas, setPizzas] = useState([])
     const [loader, setLoader] = useState(true)
     const fetchPizzas = async () => {
+        if(pizzas.length > 0) return
         try {
             setLoader(true)
             const response = await fetch('https://pizza-mania-23rd.onrender.com/api/v1/auth');
@@ -54,5 +54,4 @@ const Home = () => {
         </div>
     )
 }
-
 export default Home

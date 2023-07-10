@@ -3,7 +3,6 @@ import imageSource from '../img/pizza.png'
 import { add, remove, update } from '../redux/slices/CartSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
-import { useNavigate } from 'react-router-dom'
 const Menu = ({ pizza }) => {
     const cart = useSelector((state) => state.cart)
     const dispatch = useDispatch()
@@ -44,7 +43,6 @@ const Menu = ({ pizza }) => {
             dispatch(remove(pizza))
         }
     }
-
     return (
         <div className="w-full md:w-64">
             <img className="h-40 mb-4 mx-auto" src={imageSource} alt="" />
