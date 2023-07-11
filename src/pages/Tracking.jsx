@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { io } from 'socket.io-client'
-import moment from 'moment'
 import { toast } from 'react-hot-toast'
 const Tracking = () => {
     const token = useSelector((state) => state.user.token)
@@ -76,7 +75,7 @@ const Tracking = () => {
                         </div>
                         <ul>
                             <li class="status_line textsm md:text-xl pb-16" data-status="order_placed"><span>Order Placed</span></li>
-                            <li class="status_line textsm md:text-xl pb-16" data-status="confirmed"><span>Order Confirmed</span></li>
+                            <li class="status_line textsm md:text-xl pb-16" data-status="confirmed"><span>Order Confirmation</span></li>
                             <li class="status_line textsm md:text-xl pb-16" data-status="prepared"><span>Preparation</span></li>
                             <li class="status_line textsm md:text-xl pb-16" data-status="delivered"><span>Out for Delivery</span></li>
                             <li class="status_line textsm md:text-xl" data-status="completed"><span>Completed</span></li>

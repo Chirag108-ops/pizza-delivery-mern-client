@@ -28,11 +28,11 @@ const Register = () => {
                 body: JSON.stringify(formData)
             });
             response = await response.json()
-            if(response.success){
+            if (response.success) {
                 toast.success('User registered Successfully')
                 navigate('/login')
             }
-            else{
+            else {
                 toast.error(response.message)
             }
         } catch (error) {

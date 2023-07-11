@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import imageSource from '../img/pizza.png'
 import { add, remove, update } from '../redux/slices/CartSlice'
 import { useDispatch, useSelector } from 'react-redux'

@@ -30,10 +30,9 @@ const Login = () => {
                 credentials: 'include'
             });
             response = await response.json()
-            const token = response.token
-            const role = response.userDetails.role
             if (response.success) {
-                
+                const token = response.token
+                const role = response.userDetails.role
                 dispatch(login(token))
                 toast.success('User Logged in successfully')
                 if(role === 'admin') {

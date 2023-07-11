@@ -1,44 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import logoImage from '../img/logo.png';
 import cartImage from '../img/cart.png';
 import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
-import {logout} from '../redux/slices/UserSlice'
-import {deleteAll} from '../redux/slices/CartSlice'
+import { logout } from '../redux/slices/UserSlice'
+import { deleteAll } from '../redux/slices/CartSlice'
 const Navbar = () => {
     // Logic to fetch token from the cookie will come here
     const navigate = useNavigate()
     const dispatch = useDispatch()
     async function clickHandler() {
-        try {
-            const response = await fetch('https://pizza-mania-23rd.onrender.com/api/v1/auth/logout', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            });
-            const data = await response.json();
-            if(data.success){
-                const payload = {
-                    isLoggedIn: false,
-                    token: ''
-                }
-                dispatch(logout())
-                dispatch(deleteAll())
-                toast.success('User logged out successfully')
-                navigate('/login')
-            }
-            else{
-                toast.error(data.message)
-            }
-        } catch (error) {
-            console.log(error);
-            toast.error('Error while logging out');
+        const payload = {
+            isLoggedIn: false,
+            token: ''
         }
+        dispatch(logout())
+        dispatch(deleteAll())
+        toast.success('User logged out successfully')
+        navigate('/login')
     }
     const cart = useSelector((state) => state.cart)
-    const isloggedIn = useSelector((state) => state.user.isLoggedIn) 
+    const isloggedIn = useSelector((state) => state.user.isLoggedIn)
     const totalQty = cart.reduce((accumulator, current) => {
         return accumulator + current.qty
     }, 0)
@@ -81,7 +64,7 @@ const Navbar = () => {
                                     {totalQty}
                                 </span>
                             }
-                            <img src={cartImage} alt=""/>
+                            <img src={cartImage} alt="" />
                         </NavLink>
                     </li>
                 </ul>

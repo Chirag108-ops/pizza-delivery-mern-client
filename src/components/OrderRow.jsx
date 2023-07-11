@@ -1,8 +1,8 @@
 import React from 'react'
 import moment from 'moment'
 import { useSelector } from 'react-redux'
+import toast from 'react-hot-toast'
 const OrderRow = ({ order,fetchOrders }) => {
-    console.log(order)
     const token = useSelector((state) => state.user.token)
     const orderItems = Object.values(order.items)
     async function statusHandler(event) {
@@ -28,7 +28,7 @@ const OrderRow = ({ order,fetchOrders }) => {
             }
         }
         catch (error) {
-            console.log(error);
+            toast.error(error)
         }
     }
     return (
@@ -38,12 +38,12 @@ const OrderRow = ({ order,fetchOrders }) => {
                 <div>
                     {orderItems.map((pizza,index) => (
                         <p key={index}>
-                            {pizza.name && pizza.name} - {pizza.qty} pcs
+                            {pizza.name} - {pizza.qty} pcs
                         </p>
                     ))}
                 </div>
             </td>
-            <td className="border px-4 py-2">{ (order.customer && order.customer.name) || (order.customerId && order.customerId.name)}</td>
+            <td className="border px-4 py-2">{order.customerId.name}</td>
             <td className="border px-4 py-2">{order.address}</td>
             <td className="border px-4 py-2">
                 <div className="inline-block relative w-64">

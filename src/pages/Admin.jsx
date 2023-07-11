@@ -21,7 +21,7 @@ const Admin = () => {
             const data = await response.json();
             setOrders(data.data); // Update the orders state with the fetched data
         } catch (error) {
-            console.log(error);
+            toast.error(error)
         }
     };
     useEffect(() => {
@@ -29,7 +29,6 @@ const Admin = () => {
     
         // Join the 'adminRoom'
         socket.emit('join', 'adminRoom');
-    
         // Listen for the 'orderPlaced' event
         socket.on('orderPlaced', (data) => {
           toast.success('New order received')
