@@ -20,6 +20,7 @@ const Register = () => {
     async function submitHandler(event) {
         event.preventDefault();
         try {
+            const toastId = toast.loading("Loading...")
             let response = await fetch('https://pizza-mania-23rd.onrender.com/api/v1/auth/register', {
                 method: 'POST',
                 headers: {
@@ -28,6 +29,7 @@ const Register = () => {
                 body: JSON.stringify(formData)
             });
             response = await response.json()
+            toast.dismiss(toastId)
             if (response.success) {
                 toast.success('User registered Successfully')
                 navigate('/login')

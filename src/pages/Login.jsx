@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {login} from '../redux/slices/UserSlice'
 const Login = () => {
     const navigate = useNavigate()
@@ -21,6 +21,7 @@ const Login = () => {
     async function submitHandler(event) {
         event.preventDefault();
         try {
+            const toastId = toast.loading("Loading...")
             let response = await fetch('https://pizza-mania-23rd.onrender.com/api/v1/auth/login', {
                 method: 'POST',
                 headers: {
@@ -30,10 +31,15 @@ const Login = () => {
                 credentials: 'include'
             });
             response = await response.json()
+            toast.dismiss(toastId)
             if (response.success) {
                 const token = response.token
                 const role = response.userDetails.role
-                dispatch(login(token))
+                const payload = {
+                    token,
+                    role
+                }
+                dispatch(login(payload))
                 toast.success('User Logged in successfully')
                 if(role === 'admin') {
                     navigate('/admin/orders')

@@ -21,7 +21,7 @@ export const CartSlice = createSlice({
                 }
             })
         },
-        deleteAll : (state) => {
+        deleteAll : () => {
             return []
         }
     }

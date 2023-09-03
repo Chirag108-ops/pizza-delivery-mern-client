@@ -1,5 +1,4 @@
 import React from 'react'
-import imageSource from '../img/pizza.png'
 import { add, remove, update } from '../redux/slices/CartSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
@@ -45,7 +44,7 @@ const Menu = ({ pizza }) => {
     }
     return (
         <div className="w-full md:w-64">
-            <img className="h-40 mb-4 mx-auto" src={imageSource} alt="" />
+            <img className="h-40 mb-4 mx-auto" src={pizza.image} alt="" />
             <div className="text-center">
                 <h2 className="mb-4 text-lg">{pizza.name}</h2>
                 <span className="size py-1 px-4 rounded-full uppercase text-xs">{pizza.size}</span>
