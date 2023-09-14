@@ -7,6 +7,9 @@ const Register = () => {
         email: '',
         password: ''
     })
+    const copywriteTimestamp = Date.now();
+    const copywriteDate = new Date(copywriteTimestamp);
+    const copywriteYear = copywriteDate.getFullYear();
     const navigate = useNavigate()
     function changeHandler(event) {
         setFormData((prev) => {
@@ -119,7 +122,7 @@ const Register = () => {
                     </div>
                 </form>
                 <p className="text-center text-gray-500 text-xs">
-                    &copy;2022 Chirag's Pizza Corner. All rights reserved.
+                    &copy;{copywriteYear} DTU's Pizza Corner. All rights reserved.
                 </p>
             </div>
         </section>
